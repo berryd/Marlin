@@ -26,8 +26,8 @@
 	#define MACHINE_NAME "Ultimaker"
 	#define FIRMWARE_URL "http://firmware.ultimaker.com"
 #else
-	#define MACHINE_NAME "Mendel"
-	#define FIRMWARE_URL "http://www.mendel-parts.com"
+	#define MACHINE_NAME "Rostock"
+	#define FIRMWARE_URL "https://github.com/jcrocholl/rostock.git"
 #endif
 
 #define STRINGIFY_(n) #n
@@ -1280,3 +1280,6 @@
 #endif
 
 #endif // ifndef LANGUAGE_H
+
+
+
