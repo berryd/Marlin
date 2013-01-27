@@ -33,6 +33,9 @@
   extern int absPreheatHPBTemp;
   extern int absPreheatFanSpeed;
     
+  extern float delta[3];
+  extern float feedrate;
+
   #ifdef NEWPANEL
     #define EN_C (1<<BLEN_C)
     #define EN_B (1<<BLEN_B)
@@ -81,6 +84,8 @@ char *ftostr51(const float &x);
 char *ftostr52(const float &x);
 
 #endif //ULTRALCD
+
+
 
 
 

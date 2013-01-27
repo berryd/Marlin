@@ -31,10 +31,3 @@ void mc_arc(float *position, float *target, float *offset, unsigned char axis_0,
   
 #endif
 
-
-
-
-
-
-
-
