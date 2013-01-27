@@ -651,7 +651,7 @@ void process_commands()
   {
     switch((int)code_value())
     {
-    case 0: // G0 -> G1
+    case 0: // G0 -> G1  
     case 1: // G1
       if(Stopped == false) {
         get_coordinates(); // For X Y Z E F
@@ -729,8 +729,12 @@ void process_commands()
         destination[i] = current_position[i];
       }
       feedrate = 0.0;
-      home_all_axis = !((code_seen(axis_codes[0])) || (code_seen(axis_codes[1])) || (code_seen(axis_codes[2])))
-                    || ((code_seen(axis_codes[0])) && (code_seen(axis_codes[1])) && (code_seen(axis_codes[2])));
+      
+      //For the the rostock, we can piss it off or break it if trying to home one axis and the carriage is near the bottom
+      //home_all_axis = !((code_seen(axis_codes[0])) || (code_seen(axis_codes[1])) || (code_seen(axis_codes[2])))
+      //              || ((code_seen(axis_codes[0])) && (code_seen(axis_codes[1])) && (code_seen(axis_codes[2])));
+                    
+      home_all_axis = true;                    
       
       #ifdef QUICK_HOME
       if (home_all_axis)  // Move all carriages up together until the first endstop is hit.
@@ -1725,6 +1729,7 @@ void prepare_move()
   // SERIAL_ECHOPGM("mm="); SERIAL_ECHO(cartesian_mm);
   // SERIAL_ECHOPGM(" seconds="); SERIAL_ECHO(seconds);
   // SERIAL_ECHOPGM(" steps="); SERIAL_ECHOLN(steps);
+  //SERIAL_ECHOPGM(" feedrate="); SERIAL_ECHOLN(feedrate);  
   for (int s = 1; s <= steps; s++) {
     float fraction = float(s) / float(steps);
     for(int8_t i=0; i < NUM_AXIS; i++) {
@@ -1964,6 +1969,10 @@ bool setTargetedHotend(int code){
   }
   return false;
 }
+
+
+
+
 
 
 

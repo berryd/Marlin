@@ -70,11 +70,8 @@
 // Horizontal offset of the universal joints on the carriages.
 #define DELTA_CARRIAGE_OFFSET 18.0 // mm
 
-// Amount to reduce radius for safety
-#define DELTA_RADIUS_REDUCER 60.5 // mm
-
 // Effective horizontal distance bridged by diagonal push rods.
-#define DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-DELTA_EFFECTOR_OFFSET-DELTA_CARRIAGE_OFFSET-DELTA_RADIUS_REDUCER)
+#define DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-DELTA_EFFECTOR_OFFSET-DELTA_CARRIAGE_OFFSET)
 
 // Effective X/Y positions of the three vertical towers.
 #define SIN_60 0.8660254037844386
@@ -146,19 +143,19 @@
 #define PIDTEMP
 #define PID_MAX 255 // limits current to nozzle; 255=full current
 #ifdef PIDTEMP
-  //#define PID_DEBUG // Sends debug data to the serial port. 
-  //#define PID_OPENLOOP 1 // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
-  #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
-                                  // is more then PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
-  #define PID_INTEGRAL_DRIVE_MAX 255  //limit for the integral term
-  #define K1 0.95 //smoothing factor withing the PID
-  #define PID_dT ((16.0 * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
+//#define PID_DEBUG // Sends debug data to the serial port. 
+//#define PID_OPENLOOP 1 // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
+#define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
+// is more then PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
+#define PID_INTEGRAL_DRIVE_MAX 255  //limit for the integral term
+#define K1 0.95 //smoothing factor withing the PID
+#define PID_dT ((16.0 * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
 
 // If you are using a preconfigured hotend then you can use one of the value sets by uncommenting it
 // Ultimaker
-    #define  DEFAULT_Kp 22.2
-    #define  DEFAULT_Ki 1.08  
-    #define  DEFAULT_Kd 114  
+#define  DEFAULT_Kp 22.2
+#define  DEFAULT_Ki 1.08  
+#define  DEFAULT_Kd 114  
 
 // Makergear
 //    #define  DEFAULT_Kp 7.0
@@ -194,9 +191,9 @@
 #ifdef PIDTEMPBED
 //120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, argressive factor of .15 (vs .1, 1, 10)
-    #define  DEFAULT_bedKp 10.00
-    #define  DEFAULT_bedKi .023
-    #define  DEFAULT_bedKd 305.4
+#define  DEFAULT_bedKp 10.00
+#define  DEFAULT_bedKi .023
+#define  DEFAULT_bedKd 305.4
 
 //120v 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 //from pidautotune
@@ -229,28 +226,28 @@
 #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
 
 #ifndef ENDSTOPPULLUPS
-  // fine Enstop settings: Individual Pullups. will be ignord if ENDSTOPPULLUPS is defined
-  #define ENDSTOPPULLUP_XMAX
-  #define ENDSTOPPULLUP_YMAX
-  #define ENDSTOPPULLUP_ZMAX
-  #define ENDSTOPPULLUP_XMIN
-  #define ENDSTOPPULLUP_YMIN
-  //#define ENDSTOPPULLUP_ZMIN
+// fine Enstop settings: Individual Pullups. will be ignord if ENDSTOPPULLUPS is defined
+#define ENDSTOPPULLUP_XMAX
+#define ENDSTOPPULLUP_YMAX
+#define ENDSTOPPULLUP_ZMAX
+#define ENDSTOPPULLUP_XMIN
+#define ENDSTOPPULLUP_YMIN
+//#define ENDSTOPPULLUP_ZMIN
 #endif
 
 #ifdef ENDSTOPPULLUPS
-  #define ENDSTOPPULLUP_XMAX
-  #define ENDSTOPPULLUP_YMAX
-  #define ENDSTOPPULLUP_ZMAX
-  #define ENDSTOPPULLUP_XMIN
-  #define ENDSTOPPULLUP_YMIN
-  #define ENDSTOPPULLUP_ZMIN
+#define ENDSTOPPULLUP_XMAX
+#define ENDSTOPPULLUP_YMAX
+#define ENDSTOPPULLUP_ZMAX
+#define ENDSTOPPULLUP_XMIN
+#define ENDSTOPPULLUP_YMIN
+#define ENDSTOPPULLUP_ZMIN
 #endif
 
 // The pullups are needed if you directly connect a mechanical endswitch between the signal and ground pins.
-const bool X_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops.
-const bool Y_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops.
-const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of the endstops.
+const bool X_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
+const bool Y_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
+const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of the endstops.
 //#define DISABLE_MAX_ENDSTOPS
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
@@ -281,10 +278,12 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 #define min_software_endstops true //If true, axis won't move to coordinates less than *_MIN_POS.
 #define max_software_endstops true //If true, axis won't move to coordinates greater than *_MAX_POS.
 
-#define X_MAX_POS 90
-#define X_MIN_POS -90
-#define Y_MAX_POS 90
-#define Y_MIN_POS -90
+//70 worked well but I lowered it for safety and try and keep down wear and tear
+//63.5 is 5x5in build area
+#define X_MAX_POS 63.5  //DEFAULT 90
+#define X_MIN_POS -63.5 //DEFAULT 90
+#define Y_MAX_POS 63.5  //DEFAULT 90
+#define Y_MIN_POS -63.5 //DEFAULT 90
 #define Z_MAX_POS MANUAL_Z_HOME_POS
 #define Z_MIN_POS 0
 
@@ -298,17 +297,20 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 // Manual homing switch locations:
 // For deltabots this means top and center of the cartesian print volume.
+#define NOZZLE_HEIGHT 10
+#define ABSOLUTE_Z_HOME_POS 412
+
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 402  // Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS (ABSOLUTE_Z_HOME_POS - NOZZLE_HEIGHT)  // Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
-#define HOMING_FEEDRATE {100*60, 100*60, 100*60, 0}  // set the homing speeds (mm/min)
+#define HOMING_FEEDRATE {100*90, 100*90, 100*90, 0}  // set the homing speeds (mm/min)
 
 // default settings 
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {40, 40, 40, 100}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 100}
 #define DEFAULT_MAX_FEEDRATE          {300, 300, 300, 300}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {9000, 9000, 9000, 9000}    // X, Y, Z, E maximum start speed for accelerated moves.
 
@@ -349,8 +351,8 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 //automatic expansion
 #if defined(ULTIMAKERCONTROLLER) || defined(REPRAP_DISCOUNT_SMART_CONTROLLER)
- #define ULTIPANEL
- #define NEWPANEL
+#define ULTIPANEL
+#define NEWPANEL
 #endif 
 
 // Preheat Constants
@@ -365,16 +367,16 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 
 #ifdef ULTIPANEL
 //  #define NEWPANEL  //enable this if you have a click-encoder panel
-  #define SDSUPPORT
-  #define ULTRA_LCD
-  #define LCD_WIDTH 20
-  #define LCD_HEIGHT 4
-  
+#define SDSUPPORT
+#define ULTRA_LCD
+#define LCD_WIDTH 20
+#define LCD_HEIGHT 4
+
 #else //no panel but just lcd 
-  #ifdef ULTRA_LCD
-    #define LCD_WIDTH 16
-    #define LCD_HEIGHT 2    
-  #endif
+#ifdef ULTRA_LCD
+#define LCD_WIDTH 16
+#define LCD_HEIGHT 2    
+#endif
 #endif
 
 // Increase the FAN pwm frequency. Removes the PWM noise but increases heating in the FET/Arduino
@@ -391,6 +393,11 @@ const bool Z_ENDSTOPS_INVERTING = false; // set to true to invert the logic of t
 #include "thermistortables.h"
 
 #endif //__CONFIGURATION_H
+
+
+
+
+
 
 
 
