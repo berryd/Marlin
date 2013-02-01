@@ -7,7 +7,7 @@ $radius = floor($dia_mm/2);
 
 $resolution = 90; //0-360
 
-$tool = 10;
+$tool = 5.25;
 
 $feedrate = 10000;
 

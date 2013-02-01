@@ -41,8 +41,6 @@ static void lcd_control_motion_menu();
 static void lcd_control_retract_menu();
 static void lcd_sdcard_menu();
 
-static void lcd_quick_feedback();//Cause an LCD refresh, and give the user visual or audiable feedback that something has happend
-
 /* Different types of actions that can be used in menuitems. */
 static void menu_action_back(menuFunc_t data);
 static void menu_action_submenu(menuFunc_t data);
@@ -631,7 +629,7 @@ menu_edit_type(unsigned long, long5, ftostr5, 0.01)
 
 /** End of menus **/
 
-static void lcd_quick_feedback()
+void lcd_quick_feedback()
 {
     lcdDrawUpdate = 2;
     blocking_enc = millis() + 500;
@@ -1032,6 +1030,7 @@ char *ftostr52(const float &x)
 }
 
 #endif //ULTRA_LCD
+
 
 
 

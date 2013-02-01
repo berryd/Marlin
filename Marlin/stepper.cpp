@@ -337,6 +337,9 @@ ISR(TIMER1_COMPA_vect)
           if(x_min_endstop && old_x_min_endstop && (current_block->steps_x > 0)) {
             endstops_trigsteps[X_AXIS] = count_position[X_AXIS];
             endstop_x_hit=true;
+            #ifdef BEEP_END_STOP;
+                lcd_quick_feedback();
+            #endif
             step_events_completed = current_block->step_event_count;
           }
           old_x_min_endstop = x_min_endstop;
@@ -356,6 +359,9 @@ ISR(TIMER1_COMPA_vect)
           if(x_max_endstop && old_x_max_endstop && (current_block->steps_x > 0)){
             endstops_trigsteps[X_AXIS] = count_position[X_AXIS];
             endstop_x_hit=true;
+            #ifdef BEEP_END_STOP;
+                lcd_quick_feedback();
+            #endif
             step_events_completed = current_block->step_event_count;
           }
           old_x_max_endstop = x_max_endstop;
@@ -375,6 +381,9 @@ ISR(TIMER1_COMPA_vect)
           if(y_min_endstop && old_y_min_endstop && (current_block->steps_y > 0)) {
             endstops_trigsteps[Y_AXIS] = count_position[Y_AXIS];
             endstop_y_hit=true;
+            #ifdef BEEP_END_STOP;
+                lcd_quick_feedback();
+            #endif
             step_events_completed = current_block->step_event_count;
           }
           old_y_min_endstop = y_min_endstop;
@@ -393,6 +402,9 @@ ISR(TIMER1_COMPA_vect)
           if(y_max_endstop && old_y_max_endstop && (current_block->steps_y > 0)){
             endstops_trigsteps[Y_AXIS] = count_position[Y_AXIS];
             endstop_y_hit=true;
+            #ifdef BEEP_END_STOP;
+                lcd_quick_feedback();
+            #endif
             step_events_completed = current_block->step_event_count;
           }
           old_y_max_endstop = y_max_endstop;
@@ -436,6 +448,9 @@ ISR(TIMER1_COMPA_vect)
           if(z_min_endstop && old_z_min_endstop && (current_block->steps_z > 0)) {
             endstops_trigsteps[Z_AXIS] = count_position[Z_AXIS];
             endstop_z_hit=true;
+            #ifdef BEEP_END_STOP;
+                lcd_quick_feedback();
+            #endif
             step_events_completed = current_block->step_event_count;
           }
           old_z_min_endstop = z_min_endstop;
@@ -457,6 +472,9 @@ ISR(TIMER1_COMPA_vect)
           if(z_max_endstop && old_z_max_endstop && (current_block->steps_z > 0)) {
             endstops_trigsteps[Z_AXIS] = count_position[Z_AXIS];
             endstop_z_hit=true;
+            #ifdef BEEP_END_STOP;
+                lcd_quick_feedback();
+            #endif
             step_events_completed = current_block->step_event_count;
           }
           old_z_max_endstop = z_max_endstop;
@@ -1049,6 +1067,7 @@ void microstep_readings()
       SERIAL_PROTOCOL(   digitalRead(E1_MS1_PIN));
       SERIAL_PROTOCOLLN( digitalRead(E1_MS2_PIN));
 }
+
 
 
 
