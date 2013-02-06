@@ -346,7 +346,7 @@ void setup()
   {
     fromsd[i] = false;
   }
-  
+
   Config_RetrieveSettings(); // loads data from EEPROM if available
 
   for(int8_t i=0; i < NUM_AXIS; i++)
@@ -355,12 +355,12 @@ void setup()
   }
 
 
-  tp_init();    // Initialize temperature loop 
+  tp_init();    // Initialize temperature loop
   plan_init();  // Initialize planner;
   watchdog_init();
   st_init();    // Initialize stepper, this enables interrupts!
   setup_photpin();
-  
+
   lcd_init();
 }
 
@@ -405,7 +405,7 @@ void loop()
   lcd_update();
 }
 
-void get_command() 
+void get_command()
 { 
   while( MYSERIAL.available() > 0  && buflen < BUFSIZE) {
     serial_char = MYSERIAL.read();
@@ -1970,6 +1970,7 @@ bool setTargetedHotend(int code){
   }
   return false;
 }
+
 
 
 

@@ -246,6 +246,7 @@ static void lcd_implementation_status_screen()
     lcd.setCursor(0,1);
     lcd.print('X');
     lcd.print(ftostr3(current_position[X_AXIS]));
+    SERIAL_ECHOPGM("X="); SERIAL_ECHO(current_position[X_AXIS]); SERIAL_ECHOPGM(" Y="); SERIAL_ECHO(current_position[Y_AXIS]); SERIAL_ECHOPGM(" Z="); SERIAL_ECHOLN(current_position[Z_AXIS]); 
     lcd_printPGM(PSTR(" Y"));
     lcd.print(ftostr3(current_position[Y_AXIS]));
 #  endif//EXTRUDERS > 1 || TEMP_SENSOR_BED != 0
@@ -468,6 +469,7 @@ static void lcd_implementation_quick_feedback()
 #endif
 }
 #endif//ULTRA_LCD_IMPLEMENTATION_HITACHI_HD44780_H
+
 
 
 

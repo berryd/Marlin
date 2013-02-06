@@ -708,16 +708,16 @@ void lcd_init()
 void lcd_update()
 {
     static unsigned long timeoutToStatus = 0;
-    
+
     lcd_buttons_update();
-    
+
     #if (SDCARDDETECT > -1)
     if((IS_SD_INSERTED != lcd_oldcardstatus))
     {
         lcdDrawUpdate = 2;
         lcd_oldcardstatus = IS_SD_INSERTED;
         lcd_implementation_init(); // to maybe revive the lcd if static electricty killed it.
-        
+
         if(lcd_oldcardstatus)
         {
             card.initsd();
@@ -730,7 +730,7 @@ void lcd_update()
         }
     }
     #endif//CARDINSERTED
-    
+
     if (lcd_next_update_millis < millis())
     {
 #ifdef ULTIPANEL
@@ -744,7 +744,7 @@ void lcd_update()
         if (LCD_CLICKED)
             timeoutToStatus = millis() + LCD_TIMEOUT_TO_STATUS;
 #endif//ULTIPANEL
-        
+
         (*currentMenu)();
 #ifdef ULTIPANEL
         if(timeoutToStatus < millis() && currentMenu != lcd_status_screen)
@@ -1030,6 +1030,7 @@ char *ftostr52(const float &x)
 }
 
 #endif //ULTRA_LCD
+
 
 
 
