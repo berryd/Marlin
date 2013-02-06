@@ -1,6 +1,6 @@
 <?php
 
-$tool = 9.5;
+$tool = 11;
 
 echo "G28".PHP_EOL."G1 F6000".PHP_EOL;
 echo "G1 Z20".PHP_EOL;

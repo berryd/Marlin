@@ -245,13 +245,11 @@ static void lcd_implementation_status_screen()
 #  else
     lcd.setCursor(0,1);
     lcd.print('X');
-    //lcd.print(ftostr3(current_position[X_AXIS]));
     char temp_buf[5];
-    lcd.print(dtostrf(current_position[X_AXIS],4,0,temp_buf));
+    lcd.print(dtostrf(current_position[X_AXIS],4,1,temp_buf));
 
     lcd_printPGM(PSTR(" Y"));
-    //lcd.print(ftostr3(current_position[Y_AXIS]));
-    lcd.print(dtostrf(current_position[Y_AXIS],4,0,temp_buf));
+    lcd.print(dtostrf(current_position[Y_AXIS],4,1,temp_buf));
 
     //SERIAL_ECHOPGM("X="); SERIAL_ECHO(current_position[X_AXIS]); SERIAL_ECHOPGM(" Y="); SERIAL_ECHO(current_position[Y_AXIS]); SERIAL_ECHOPGM(" Z="); SERIAL_ECHOLN(current_position[Z_AXIS]); 
 #  endif//EXTRUDERS > 1 || TEMP_SENSOR_BED != 0
@@ -474,6 +472,7 @@ static void lcd_implementation_quick_feedback()
 #endif
 }
 #endif//ULTRA_LCD_IMPLEMENTATION_HITACHI_HD44780_H
+
 
 
 
