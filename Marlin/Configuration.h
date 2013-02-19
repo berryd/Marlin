@@ -297,6 +297,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // Manual homing switch locations:
 // For deltabots this means top and center of the cartesian print volume.
+//#define NOZZLE_HEIGHT 31.05
 #define NOZZLE_HEIGHT 31
 #define ABSOLUTE_Z_HOME_POS 414
 
@@ -308,16 +309,16 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 #define HOMING_FEEDRATE {100*60, 100*60, 100*60, 0}  // set the homing speeds (mm/min)
 
-// default settings 
+// default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 100}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 200.941915228}
 #define DEFAULT_MAX_FEEDRATE          {400, 400, 400, 20}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000}    // X, Y, Z, E maximum start speed for accelerated moves.
 
 #define DEFAULT_ACCELERATION          3000   // X, Y, Z and E max acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
 
-// 
+//
 #define DEFAULT_XYJERK                20.0   // (mm/sec)
 #define DEFAULT_ZJERK                 20.0   // (mm/sec)
 #define DEFAULT_EJERK                 10.0   // (mm/sec)
@@ -329,7 +330,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 // EEPROM
 // the microcontroller can store settings in the EEPROM, e.g. max velocity...
 // M500 - stores paramters in EEPROM
-// M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).  
+// M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable eeprom support
 //#define EEPROM_SETTINGS
@@ -354,11 +355,11 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define ULTIPANEL
 #define NEWPANEL
 //#define BEEP_END_STOP
-#endif 
+#endif
 
 // Preheat Constants
-#define PLA_PREHEAT_HOTEND_TEMP 180 
-#define PLA_PREHEAT_HPB_TEMP 70
+#define PLA_PREHEAT_HOTEND_TEMP 200
+#define PLA_PREHEAT_HPB_TEMP 50
 #define PLA_PREHEAT_FAN_SPEED 255		// Insert Value between 0 and 255
 
 #define ABS_PREHEAT_HOTEND_TEMP 240
@@ -373,10 +374,10 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define LCD_WIDTH 20
 #define LCD_HEIGHT 4
 
-#else //no panel but just lcd 
+#else //no panel but just lcd
 #ifdef ULTRA_LCD
 #define LCD_WIDTH 16
-#define LCD_HEIGHT 2    
+#define LCD_HEIGHT 2
 #endif
 #endif
 
