@@ -297,7 +297,6 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // Manual homing switch locations:
 // For deltabots this means top and center of the cartesian print volume.
-//#define NOZZLE_HEIGHT 31.05
 #define NOZZLE_HEIGHT 31
 #define ABSOLUTE_Z_HOME_POS 414
 
