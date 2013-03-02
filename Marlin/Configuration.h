@@ -310,7 +310,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 200.941915228}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 197}
 #define DEFAULT_MAX_FEEDRATE          {400, 400, 400, 20}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000}    // X, Y, Z, E maximum start speed for accelerated moves.
 
