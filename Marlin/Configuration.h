@@ -265,7 +265,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 #define INVERT_X_DIR false    // for Mendel set to false, for Orca set to true
 #define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR false    // for Mendel set to false, for Orca set to true
-#define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_E0_DIR true   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 
@@ -297,7 +297,7 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 // Manual homing switch locations:
 // For deltabots this means top and center of the cartesian print volume.
-#define NOZZLE_HEIGHT 30
+#define NOZZLE_HEIGHT 29.8 //30
 #define ABSOLUTE_Z_HOME_POS 414
 
 #define MANUAL_X_HOME_POS 0
@@ -306,11 +306,12 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
-#define HOMING_FEEDRATE {100*60, 100*60, 100*60, 0}  // set the homing speeds (mm/min)
+#define HOMING_FEEDRATE {100*52, 100*52, 100*52, 0}  // set the homing speeds (mm/min)
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 197}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 708}
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 198}
 #define DEFAULT_MAX_FEEDRATE          {400, 400, 400, 20}  // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {3000, 3000, 3000, 3000}    // X, Y, Z, E maximum start speed for accelerated moves.
 
